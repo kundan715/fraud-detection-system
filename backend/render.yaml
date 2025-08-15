@@ -1,0 +1,12 @@
+# Optional: Render blueprint for the API. Commit backend/models/* first (remove them from .gitignore)
+# or add `python -m ml.train` to buildCommand and upload the dataset as a build asset.
+services:
+  - type: web
+    name: fraud-detection-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ALLOWED_ORIGINS
+        value: https://YOUR-FRONTEND.vercel.app
